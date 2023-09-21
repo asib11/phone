@@ -1,9 +1,9 @@
-const loadApiData = async searchValue=>{
+const loadApiData = async (searchValue, dataLimit)=>{
     try{
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
         const res = await fetch(url);
         const data = await res.json();
-        displayLoad(data.data);
+        displayLoad(data.data, dataLimit);
     }
     catch(error){
         console.log('find error');
@@ -11,9 +11,18 @@ const loadApiData = async searchValue=>{
     }
 };
 
-
-const displayLoad = phoneData =>{
+//display
+const displayLoad = (phoneData, dataLimit) =>{
     console.log(phoneData);
+    //show all data button
+    const showAll = document.getElementById('show-all');
+    if(dataLimit && phoneData.length > 10){
+        phoneData = phoneData.slice(0,9);
+        showAll.classList.remove('d-none');
+    }else{
+        showAll.classList.add('d-none');
+    }
+
     //display not found
     const notFound = document.getElementById("no-found");
     if(phoneData.length === 0){
@@ -41,11 +50,30 @@ const displayLoad = phoneData =>{
     toggleloader(false);
 };
 
-document.getElementById("search-btn").addEventListener('click', ()=>{
+//search process
+const processSearch = dataLimit=>{
     toggleloader(true);
-    loadApiData(document.getElementById('search-text').value);
-})
+    const serchField = document.getElementById('search-text');
+    const searchValue = serchField.value ;
+    loadApiData(searchValue,dataLimit);
+};
 
+//search button
+document.getElementById("search-btn").addEventListener('click', ()=>{
+    processSearch(10);
+    // toggleloader(true);
+    // const serchField = document.getElementById('search-text');
+    // const searchValue = serchField.value ;
+    // loadApiData(searchValue);
+});
+
+//show all btn work
+
+document.getElementById('btn-show-all').addEventListener('click', ()=>{
+    processSearch();
+});
+
+//load button
 const toggleloader = isloading =>{
     const loader = document.getElementById('loader');
     if (isloading){
@@ -53,6 +81,6 @@ const toggleloader = isloading =>{
     }else{
         loader.classList.add('d-none');
     }
-}
+};
 
 // loadApiData('iphone')
