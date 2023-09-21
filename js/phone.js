@@ -9,7 +9,9 @@ const loadApiData = async searchValue=>{
         console.log('find error');
         console.log(error);
     }
-}
+};
+
+
 const displayLoad = phoneData =>{
     console.log(phoneData);
     //display not found
@@ -19,7 +21,7 @@ const displayLoad = phoneData =>{
     }else{
         notFound.classList.add('d-none')
     }
-    
+
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerText = '';
     phoneData.forEach(phone=>{
@@ -36,12 +38,21 @@ const displayLoad = phoneData =>{
         `;
         phoneContainer.appendChild(div);
     });
+    toggleloader(false);
 };
 
 document.getElementById("search-btn").addEventListener('click', ()=>{
+    toggleloader(true);
     loadApiData(document.getElementById('search-text').value);
 })
 
-// const toggleNotFound =
+const toggleloader = isloading =>{
+    const loader = document.getElementById('loader');
+    if (isloading){
+        loader.classList.remove("d-none");
+    }else{
+        loader.classList.add('d-none');
+    }
+}
 
 // loadApiData('iphone')
