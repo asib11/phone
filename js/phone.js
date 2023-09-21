@@ -12,6 +12,14 @@ const loadApiData = async searchValue=>{
 }
 const displayLoad = phoneData =>{
     console.log(phoneData);
+    //display not found
+    const notFound = document.getElementById("no-found");
+    if(phoneData.length === 0){
+        notFound.classList.remove('d-none');
+    }else{
+        notFound.classList.add('d-none')
+    }
+    
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerText = '';
     phoneData.forEach(phone=>{
@@ -19,7 +27,7 @@ const displayLoad = phoneData =>{
         div.classList.add('col');
         div.innerHTML = `
             <div class="card h-100">
-                <img src="${phone.image}" class="card-img-top p-4" alt="...">
+                <img src="${phone.image}" class="card-img-top p-5" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${phone.brand}</h5>
                     <p class="card-text">Model: ${phone.phone_name}</p>
@@ -34,5 +42,6 @@ document.getElementById("search-btn").addEventListener('click', ()=>{
     loadApiData(document.getElementById('search-text').value);
 })
 
+// const toggleNotFound =
 
-loadApiData('iphone')
+// loadApiData('iphone')
