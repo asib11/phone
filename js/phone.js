@@ -99,7 +99,7 @@ const modalLoad = async id =>{
 const modalDisplay = data =>{
     document.getElementById('phoneDetailsModalLabel').innerText = data.name;
     document.getElementById('modalBody').innerHTML =`
-        <p>chipset: ${data.mainFeatures.chipSet}</p>
+        <p>chipset: ${data.mainFeatures.chipSet ? data.mainFeatures.chipSet: 'no chipset data found'}</p>
     `;
 }
 
