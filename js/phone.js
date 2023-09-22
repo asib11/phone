@@ -42,6 +42,10 @@ const displayLoad = (phoneData, dataLimit) =>{
                 <div class="card-body">
                     <h5 class="card-title">${phone.brand}</h5>
                     <p class="card-text">Model: ${phone.phone_name}</p>
+
+                    <button onclick="modalLoad('${phone.slug}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">
+                    Phone Details
+                </button>
                 </div>
             </div>
         `;
@@ -83,4 +87,20 @@ const toggleloader = isloading =>{
     }
 };
 
-// loadApiData('iphone')
+//modal details
+const modalLoad = async id =>{
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data);
+    modalDisplay(data.data);
+};
+
+const modalDisplay = data =>{
+    document.getElementById('phoneDetailsModalLabel').innerText = data.name;
+    document.getElementById('modalBody').innerHTML =`
+        <p>chipset: ${data.mainFeatures.chipSet}</p>
+    `;
+}
+
+//loadApiData('iphone')

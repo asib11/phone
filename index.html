@@ -8,33 +8,56 @@
     <title>Phone</title>
 </head>
 <body>
-    <section>
-        <div class="d-flex justify-content-center align-items-center mb-5">
-            <input id="search-text" class="text-center" type="text" placeholder="Search">
-            <button id="search-btn" class="text-bg-primary" >Phone Search</button>
+
+    <main>
+        <section>
+            <div class="d-flex justify-content-center align-items-center my-5">
+                <input id="search-text" class="text-center" type="text" placeholder="Search">
+                <button id="search-btn" class="text-bg-primary" >Phone Search</button>
+            </div>
+    
+        </section>
+        <section>
+            <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">
+            </div>
+        </section>
+    
+        <section>
+            <h2 id="no-found" class="text-center text-warning d-none">No data found. Please Search properly or try New One</h2>
+    
+            <div id="btn-show-all" class="d-flex justify-content-center my-5">
+                <div id="show-all" class="btn btn-primary d-none">Show All</div>
+            </div>
+        </section>
+    
+        <!-- spinning loader -->
+        <section id="loader" class="d-flex justify-content-center d-none">
+            <button class="btn btn-primary " type="button" disabled>
+                <span class="spinner-border spinner-border-sm " aria-hidden="true"></span>
+                <span role="status ">Loading...</span>
+              </button>
+        </section>
+    
+        <!-- Modal -->
+    <div class="modal fade" id="phoneDetailsModal" tabindex="-1" aria-labelledby="phoneDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="phoneDetailsModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modalBody" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
         </div>
+      </div>
 
-    </section>
-    <section>
-        <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">
-        </div>
-    </section>
-
-    <section>
-        <h2 id="no-found" class="text-center text-warning d-none">No data found. Please Search properly or try New One</h2>
-
-        <div id="btn-show-all" class="d-flex justify-content-center ">
-            <div id="show-all" class="btn btn-primary d-none">Show All</div>
-        </div>
-    </section>
-
-    <!-- spinning loader -->
-    <section id="loader" class="d-flex justify-content-center d-none">
-        <button class="btn btn-primary " type="button" disabled>
-            <span class="spinner-border spinner-border-sm " aria-hidden="true"></span>
-            <span role="status ">Loading...</span>
-          </button>
-    </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/phone.js"></script>
