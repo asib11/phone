@@ -59,6 +59,7 @@ const processSearch = dataLimit=>{
     toggleloader(true);
     const serchField = document.getElementById('search-text');
     const searchValue = serchField.value ;
+    serchField.value = '';
     loadApiData(searchValue,dataLimit);
 };
 
